@@ -13,11 +13,19 @@ class Program
 
         
         Job job2 = new Job();
-        job2._jobTitle = "Engineer";
+        job2._jobTitle = "Manager";
         job2._company = "Apple";
         job2._startYear = "1997";
         job2._endYear = "2012";
-        job2.Display();
+        
+
+        Resume myResume = new Resume();
+        myResume._jobs.Add(job1);
+        myResume._jobs.Add(job2);
+        myResume.showDetails();
+        
+
+
 
     
         
