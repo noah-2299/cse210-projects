@@ -9,7 +9,6 @@ class Program
         job1._company = "Microsoft";
         job1._startYear = "1990";
         job1._endYear = "2010";
-        job1.Display();
 
         
         Job job2 = new Job();
@@ -20,10 +19,11 @@ class Program
         
 
         Resume myResume = new Resume();
+        myResume._name = "Noah";
         myResume._jobs.Add(job1);
         myResume._jobs.Add(job2);
         myResume.showDetails();
-        
+
 
 
 
