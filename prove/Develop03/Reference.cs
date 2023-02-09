@@ -1,20 +1,23 @@
 using System;
 
-public class Reference {
-    private string _book;
-    private string  _chapter;
-    private string _verse;
-    
-    public Reference(){
-    _book = "Proverbs ";
-    _chapter = "3:";
-    _verse = "5-6";
-    }
-    public Reference(book, chapter, verse){
-        _book = book;
-        _chapter = chapter;
-        _verse = verse;
-    }
+public class Reference
+{
+private string _book;
+private string _chapter;
+private List<int> _verseList;
+
+public Reference(string book, string chapter, List<int> verses){
+    _book = book;
+    _chapter = chapter;
+    _verseList = verses;
+}
+public Reference(){
+    _book = "Nephi";
+    _chapter = "1";
+    _verseList = new List<int> {1,2};
+}
+
+
 
 
 }

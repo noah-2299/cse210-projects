@@ -21,6 +21,9 @@ public class Word
         _word = hiddenWord;
         isHidden = true;
     }
+    public string GetWord(){
+        return _word;
+    }
 }
 
 

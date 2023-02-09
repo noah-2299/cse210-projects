@@ -4,9 +4,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        Word friend = new Word("Friend");
-        friend.Hide();
-        Console.WriteLine(friend);
+        Word word = new Word("Test");
+        //word.Hide();
+        word.GetWord();
         
     }
 }
