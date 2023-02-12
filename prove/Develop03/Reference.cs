@@ -14,7 +14,7 @@ public Reference(string book, string chapter, List<int> verses){
 public Reference(){
     _book = "Nephi";
     _chapter = "1";
-    _verseList = new List<int> {1,2};
+    _verseList = new List<int> {1,2,3};
 }
 
 

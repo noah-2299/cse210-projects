@@ -3,11 +3,12 @@ using System;
 public class Word
 {
     private string _word;
-    private bool isHidden = false;
+    private bool _isHidden;
 
     public Word(string word)
     {
         _word = word;
+        _isHidden = false;
     }
 
     public void Hide()
@@ -19,10 +20,13 @@ public class Word
             hiddenWord += "_";
         }
         _word = hiddenWord;
-        isHidden = true;
+        _isHidden = true;
     }
     public string GetWord(){
         return _word;
+    }
+    public bool GetStatus(){
+        return _isHidden;
     }
 }
 
