@@ -3,11 +3,12 @@ using System;
 public class Word
 {
     private string _word;
-    private bool isHidden = false;
+    private bool isHidden;
 
     public Word(string word)
     {
         _word = word;
+        isHidden = false;
     }
 
     public void Hide()
@@ -24,6 +25,7 @@ public class Word
     public string GetWord(){
         return _word;
     }
+    
 }
 
 
