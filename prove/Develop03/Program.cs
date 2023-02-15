@@ -4,9 +4,16 @@ class Program
 {
     static void Main(string[] args)
     {
-        Word word = new Word("Test");
-        //word.Hide();
-        word.GetWord();
-        
+    Scripture nephi = new Scripture();
+    string quit = "";
+    bool fullyHidden = false;
+    while (quit != "quit" && fullyHidden == false){
+    Console.Clear();
+    nephi.RenderText();
+    nephi.HideWords();
+    quit = Console.ReadLine();
+    fullyHidden = nephi.fullyHidden();
+    Console.Clear();
+    }
     }
 }
