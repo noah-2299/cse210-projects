@@ -1,13 +1,11 @@
 
 public class Animation{
 
-        //sequence = new string[] { "/", "-", "\\", "|" };
-        //sequence = new string[] { ".", "o", "O", "o"};
-        //sequence = new string[] { "+", "x" };
-        //sequence = new string[] { "V", "<", "^", ">" };
-        //sequence = new string[] { ".   ", "..  ", "... ", "...." };
-        private string[] _sequence = {"1","2","3","4","5","6"};  //{ ".", "o", "O", "o"};
-        private int _interval = 1000;
+        private string[] _spin = { "/", "-", "\\", "|" };
+        private string[] _breath = { ".", "o", "O", "o"};
+        private string[] _count = {"1","2","3","4","5","6"};
+        private string[] _sequence;
+        private int _interval = 400;
         private DateTime _now = DateTime.Now;
         private DateTime _endTime;
 
@@ -21,6 +19,24 @@ public class Animation{
                     Console.Write("\b \b");
                 }
                 _now = DateTime.Now;
+            }
+        }
+        public Animation(int type)
+        {
+            switch (type)
+            {
+                case 0:
+                    _sequence = _spin;
+                    _interval = 300;
+                    break;
+                case 1:
+                    _sequence = _breath;
+                    _interval = 600;
+                    break;
+                case 2:
+                    _sequence = _count;
+                    _interval = 1000;
+                    break;
             }
         }
 
