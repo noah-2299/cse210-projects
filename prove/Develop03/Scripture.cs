@@ -1,14 +1,9 @@
 using System;
 
 public class Scripture {
-<<<<<<< HEAD
-    private List<Word> _wordList;
-    
-=======
     private Reference _ref;
     private List<Word> _wordList;
     private string _rawText;
->>>>>>> dc751b9f590df9953c2e08027e4e182ea84f88c2
 
 
     public Scripture()

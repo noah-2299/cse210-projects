@@ -12,7 +12,7 @@ class Program
     nephi.RenderText();
     nephi.HideWords();
     quit = Console.ReadLine();
-    fullyHidden = nephi.fullyHidden();
+    fullyHidden = nephi.FullyHidden();
     Console.Clear();
     }
     }
