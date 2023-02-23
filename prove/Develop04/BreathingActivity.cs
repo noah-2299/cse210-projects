@@ -1,12 +1,13 @@
 public class BreathingActivity: Activity{
-    private int _breathDuration = 4;
+    private int _breathDuration = 6;
     
     public void Activate(){
         Console.WriteLine();
-        Console.WriteLine("Breath In...");
-        _countDown.Animate(_breathDuration);
-        Console.WriteLine("Now breath Out...");
-        _countDown.Animate(_breathDuration);
+        Console.Write("Breath In...");
+        _animation.CountDown(_breathDuration);
+        Console.WriteLine();
+        Console.Write("Now breath Out...");
+        _animation.CountDown(_breathDuration);
         Console.WriteLine();
     }
     public BreathingActivity()

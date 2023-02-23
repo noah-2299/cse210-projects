@@ -19,14 +19,12 @@ public class ReflectionActivity: Activity{
         "> What did you learn about yourself through this experience?",
         "> How can you keep this experience in mind in the future?",
     };
+    private HashSet<string> _chosen = new HashSet<string>();
     private string _prompt = "";
 
     private string _question = "";
 
     private Random _r = new Random();
-
-    private Animation _count = new Animation(2);
-    private Animation _spinner = new Animation(0);
 
 
     
@@ -41,14 +39,22 @@ public class ReflectionActivity: Activity{
         Console.ReadLine();
         Console.WriteLine("Now ponder the following questions as they related to this experience.");
         Console.WriteLine("You may begin in:");
-        _count.Animate(4);
+        _animation.CountDown(3);
+        Console.Clear();
           
     }
     public void Question()
     {
+        do {
         _question = _questions[_r.Next(_questions.Count)];
+        } while (_chosen.Contains(_question));
+        _chosen.Add(_question);
+        if (_chosen.Count == _questions.Count) 
+            {
+            _chosen.Clear();
+            }
         Console.WriteLine(_question);
-        _spinner.Animate(3);
+        _animation.Spin(6);
     }
 
 

@@ -20,7 +20,7 @@ public class ListingActivity: Activity{
         Console.WriteLine("List as many responses as you can to the following prompt:");
         Console.WriteLine(_prompt);
         Console.WriteLine("You may begin in:");
-        _countDown.Animate(4);
+        _animation.CountDown(3);
      }
      public void List()
      {
