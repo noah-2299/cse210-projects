@@ -2,45 +2,57 @@
 
 public class Activity{
 
+protected string _activityName = "_____";
 
-private string _activityName;
+protected string _description = "______";
 
-private string _description;
-
-private string _duration;
-
-private DateTime _now = DateTime.Now;
+private DateTime _now;
 private DateTime _endTime;
 
+private string _durationString;
+
+protected Animation _spinner = new Animation(0);
+protected Animation _breather = new Animation(1);
+protected Animation _countDown = new Animation(2);
+
+
 public void GetStartMessage(){
+    Console.Clear();
     Console.WriteLine("Welcome to the " + _activityName + ". ");
     Console.WriteLine();
     Console.WriteLine(_description);
     Console.WriteLine();
     Console.WriteLine("How long, in seconds, would you like for your session?");
+    _durationString = Console.ReadLine();
+    Console.Clear();
+    Console.WriteLine("Get Ready!");
+    _spinner.Animate(3);
 }
 
-public string GetEndMessage(){
-    return "Goodbye";
+public void GetEndMessage(){
+    Console.WriteLine("Well done!");
+    Console.WriteLine();
+    Console.WriteLine($"You have completed a {_durationString} seconds of the {_activityName}");
+    _durationString = "";
+    
+}
+public void setEndTime(){
+    _now = DateTime.Now;
+    _endTime = _now.AddSeconds(int.Parse(_durationString));
 }
 
-public void SetDuration(string duration){
-    _duration = duration;
-    _endTime = _now.AddSeconds();
+
+public bool HasTime(){
+    _now = DateTime.Now;
+    if (_now < _endTime)
+    {
+        return true;
+    }
+    return false;
 }
-
-public Activity(string name, string description, string duration){
-    _activityName = name;
-    _description = description;
-    _duration = duration;
-
-}
-
 public Activity(){
-    _activityName = "_____";
-    _description = "______";
-    _duration = "_______";
-
-}
+     _activityName = "------" ;
+     _description = "------";
+ }
 
 }

@@ -3,7 +3,7 @@ public class Animation{
 
         private string[] _spin = { "/", "-", "\\", "|" };
         private string[] _breath = { ".", "o", "O", "o"};
-        private string[] _count = {"1","2","3","4","5","6"};
+        private string[] _count = {"4","3","2","1"};
         private string[] _sequence;
         private int _interval = 400;
         private DateTime _now = DateTime.Now;
@@ -39,7 +39,11 @@ public class Animation{
                     break;
             }
         }
-
+        public void SetStringArray(string[] sequence)
+            {
+                _sequence = sequence;
+            }
+        
 
  
 
