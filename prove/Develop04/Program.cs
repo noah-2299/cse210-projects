@@ -48,7 +48,7 @@ class Program
                     listing.SetEndTime();
                     while (listing.HasTime())
                     {
-                        // In showing creativity to the requirements this method ensures that the random questions are fully run through before they start again. 
+                        // In showing creativity to the requirements this method ensures that the random questions are fully run through before they start again.
                         listing.List();
                     }
                     listing.TotaledEntries();
