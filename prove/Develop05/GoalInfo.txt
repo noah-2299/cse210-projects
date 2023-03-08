@@ -1,0 +1,4 @@
+90
+Simple Goal, Hello, World, 10, True
+Eternal Goal, Never ending, Story, 5
+Checklist Goal, Check Off, This Goal , 2, 50, 10, 10
