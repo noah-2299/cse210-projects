@@ -9,7 +9,7 @@ public class Menu
         "Save Goals",
         "Load Goals",
         "Record Event",
-        "Quit"
+        "Save and Quit"
     };
     private string _selection;
 

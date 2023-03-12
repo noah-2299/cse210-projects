@@ -5,32 +5,42 @@ class Program
 {
     static void Main(string[] args)
     {
-        Menu mainMenu = new Menu();
         User user1 = new User();
-
-        string choice = "";
-        string filename = "GoalInfo.txt";
-        List<Goal> currentGoals = new List<Goal>();
+        Menu mainMenu = new Menu();
+        string userName ="";
         int currentPoints = 0;
+        string choice = "";
+        List<Goal> currentGoals = new List<Goal>();
+        Console.WriteLine("Welcome to the Goal Setting Program,");
+        Console.WriteLine("What is you name:");
+        userName = Console.ReadLine();
+        user1.SetName(userName);
+        string filename = $"{user1.GetName()}.txt";
         while(choice != "6"){
-            Console.WriteLine($"You have {currentPoints} points!");
-            choice = mainMenu.Display();
+            Console.WriteLine($"You have {currentPoints} points! That means you are rank {user1.GetRank()}"); // Need to add the rank to this string
+            choice = mainMenu.Display();//should the menu change with rank? 
             switch(choice)
             {
                 case "1":
+                    //Print out the possible types of goals and get usert input
                     Console.WriteLine("Which Type of Goal would you like to make?");
                     Console.WriteLine("1. Simple Goal");
                     Console.WriteLine("2. Eternal Goal");
                     Console.WriteLine("3. Checklist Goal");
                     Console.Write(">:");
                     string typeNumber = Console.ReadLine();
-                    Console.Write("What is the name of you goal:");
+                    Console.WriteLine("What is the name of you goal:");
+                    Console.Write(">:");
                     string name = Console.ReadLine();
-                    Console.Write("What is a short description of you goal:");
+                    Console.WriteLine("What is a short description of you goal:");
+                    Console.Write(">:");
                     string description = Console.ReadLine();
-                    Console.Write("How many point for completing this goal:");
+                    Console.WriteLine("How many point for completing this goal:");
+                    Console.Write(">:");
                     string pointsInput = Console.ReadLine(); // I need to figure out how I want to convert this
+                    // points need to be converted to correct data type
                     int points = int.Parse(pointsInput);
+
                     if (typeNumber == "1")
                     {
                         SimpleGoal simple = new SimpleGoal(name, description, points);
@@ -56,9 +66,6 @@ class Program
                     {
                         Console.Write("Please type a number on the menu");
                     }
-                    //What type of Goal would you like to make
-                    // based on which type of goal that they choose gather the information for that goal
-                    //Create that goal with all the details
                     break;
                 case "2":
                     int i = 0;
@@ -71,7 +78,7 @@ class Program
                 case "3":
                     using (StreamWriter outputFile = new StreamWriter(filename))
                     {
-                        outputFile.WriteLine($"{currentPoints}");
+                        outputFile.WriteLine($"{currentPoints}, {user1.GetName()}");
                         foreach (Goal goal in currentGoals)
                         {
                         outputFile.WriteLine($"{goal.PrintGoalAsString()}");
@@ -79,13 +86,23 @@ class Program
                     }
                     break;
                 case "4":
-                    string[] lines = System.IO.File.ReadAllLines(filename);
-                    
+                    Console.WriteLine("Which File would you like to load?");
+                    DirectoryInfo directory = new DirectoryInfo(@"C:\Users\N-Desk\Documents\GitHub\cse210-projects\prove\Develop05\");
+                    FileInfo[] Files = directory.GetFiles("*.txt");
+                    for (i=0; i < Files.Count(); i++)
+                    {
+                        FileInfo file = Files[i];
+                        Console.WriteLine($"{i+1}. {file.Name}");
+                    }
+                    int fileNumber = int.Parse(Console.ReadLine())-1;
+                    string fileString = Files[fileNumber].Name;
+                    string[] lines = System.IO.File.ReadAllLines(fileString);
                     for (i=0; i< lines.Count();i++)
                     {
                         if(i==0)
                         {
-                            currentPoints = int.Parse(lines[i]);
+                            string[] parts = lines[i].Split(",");
+                            currentPoints = int.Parse(parts[0]);
                         }
                         else
                         {
@@ -105,21 +122,18 @@ class Program
                                     EternalGoal eternal = new EternalGoal(nameFromFile,descriptionFromFile,convertedPoints);
                                     break;
                                 case "Checklist Goal":
-                                    string bonus = parts[4];
-                                    int totalTimes = int.Parse(parts[5]);
+                                    int bonus = int.Parse(parts[4]);
+                                    string totalTimes = parts[5];
                                     string repsComplete = parts[6];
-                                    ChecklistGoal checklist = new ChecklistGoal(nameFromFile,descriptionFromFile,convertedPoints,bonus,totalTimes);
+                                    ChecklistGoal checklist = new ChecklistGoal(nameFromFile,descriptionFromFile,convertedPoints,totalTimes,bonus);
                                     checklist.SetTimesCompleted(repsComplete);
                                     currentGoals.Add(checklist);
                                     break;
                             }
                         }
-
                     }
                     break;
-                case "5":
-                    // Display all the current goals, ask for a user selecetion and then award and display points accociated
-                    
+                case "5": 
                     Console.WriteLine("The Incomplete Goals are:");
                     for (i = 0; i < currentGoals.Count();i++)
                     {
@@ -143,10 +157,21 @@ class Program
                     else
                     {
                         currentPoints += currentGoals[eventNumber].CompleteGoal();
+                        user1.SetPoints(currentPoints);
+                        user1.CalculateRank();    
+                    }
+                    break;
+                case "6":
+                    using (StreamWriter outputFile = new StreamWriter(filename))
+                    {
+                        outputFile.WriteLine($"{currentPoints}, {user1.GetName()}");
+                        foreach (Goal goal in currentGoals)
+                        {
+                        outputFile.WriteLine($"{goal.PrintGoalAsString()}");
+                        }
                     }
                     break;
            }
         }
-
     }
 }

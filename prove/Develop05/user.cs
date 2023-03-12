@@ -2,7 +2,7 @@ public class User
 {
     private string _userName;
     private int _points;
-    private string _rank;
+    private string _rank = "Starter";
     private string _filename;
     
     private string[] _rankList = 
@@ -29,9 +29,8 @@ public class User
     {
         _points = points;
     }
-    public void AddPoints(int points)
+    public void CalculateRank()
     {
-        _points += points;
         if (_points < 100)
         {
             _rank = _rankList[0];
@@ -56,5 +55,9 @@ public class User
         {
             _rank = _rankList[5];
         }
+    }
+    public string GetRank()
+    {
+        return _rank;
     }
 }
