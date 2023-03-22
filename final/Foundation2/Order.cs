@@ -25,7 +25,7 @@ public class Order
     }
     public string ShippingLabel()
     {
-        return _customer.ShippingString();
+        return $"SHIP TO:\n{_customer.ShippingString()}";
 
     }
     public string PackingLabel()
